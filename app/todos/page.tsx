@@ -10,8 +10,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { Pencil } from "lucide-react";
-import { todo } from "node:test";
 
 type Todo = {
   text: string;
@@ -77,7 +75,9 @@ export default function Page() {
             {todos.map((todo) => (
               <li
                 key={todo.id}
-                className="bg-violet-100 p-2 mx-3 my-3 rounded-md flex justify-between items-center"
+                className={`bg-violet-100 p-2 mx-3 my-3 rounded-md flex justify-between items-center ${
+                  todo.isCompleted ? "bg-green-100" : "bg-gray-100"
+                }`}
               >
                 <span
                   className={`flex-1 ${todo.isCompleted ? "line-through" : ""}`}
