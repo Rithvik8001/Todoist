@@ -16,6 +16,7 @@ type Todo = {
   id: number;
   isCompleted: boolean;
 };
+
 export default function Page() {
   const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useState<Todo[]>([]);
