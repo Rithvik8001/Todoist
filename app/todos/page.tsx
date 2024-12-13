@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/hooks/use-toast";
 
 type Todo = {
   text: string;
@@ -20,10 +22,14 @@ type Todo = {
 export default function Page() {
   const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useState<Todo[]>([]);
+  const { toast } = useToast();
 
   const addTodo = () => {
     if (todoInput == "") {
-      alert("please add todo");
+      toast({
+        variant: "destructive",
+        description: "please add Todo",
+      });
       return;
     }
     const newTodo: Todo = {
@@ -33,6 +39,9 @@ export default function Page() {
     };
     setTodos([...todos, newTodo]);
     setTodoInput("");
+    toast({
+      title: "Todo is successfully added",
+    });
   };
 
   const markAsCompleted = (id: number) => {
@@ -41,6 +50,9 @@ export default function Page() {
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       )
     );
+    toast({
+      title: "Marked as Complete",
+    });
   };
 
   return (
@@ -62,6 +74,7 @@ export default function Page() {
               placeholder="Please add your todo"
             />
             <Button onClick={addTodo} className="ml-3">
+              <Toaster />
               Add Todo
             </Button>
           </div>
@@ -88,10 +101,14 @@ export default function Page() {
                 <Button
                   onClick={() => {
                     markAsCompleted(todo.id);
+                    toast({
+                      title: "Successfully Deleted",
+                    });
                   }}
                   variant="outline"
                   className="mr-2"
                 >
+                  <Toaster />
                   Completed
                 </Button>
                 <Button
@@ -100,6 +117,7 @@ export default function Page() {
                   }}
                   variant="destructive"
                 >
+                  <Toaster />
                   Delete
                 </Button>
               </li>
