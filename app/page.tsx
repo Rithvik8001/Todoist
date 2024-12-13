@@ -24,7 +24,7 @@ export default function Page() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <Link href="/todos">
+          <Link href="/sign-up">
             <Button size="lg" className="font-semibold px-8 py-2 rounded-full">
               Get Started
             </Button>

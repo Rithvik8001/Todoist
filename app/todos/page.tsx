@@ -102,7 +102,7 @@ export default function Page() {
                   onClick={() => {
                     markAsCompleted(todo.id);
                     toast({
-                      title: "Successfully Deleted",
+                      title: "Successfully Completed",
                     });
                   }}
                   variant="outline"
@@ -114,6 +114,10 @@ export default function Page() {
                 <Button
                   onClick={() => {
                     setTodos(todos.filter((t) => t.id !== todo.id));
+                    toast({
+                      title: "Successfully Deleted",
+                      variant: "destructive",
+                    });
                   }}
                   variant="destructive"
                 >
